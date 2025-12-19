@@ -13,10 +13,10 @@ export function Header() {
 
   return (
     <header className="relative w-full border-b border-border bg-background">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
+      <div className="container mx-auto flex h-22 items-center justify-between px-4 md:px-6">
         {/* Logo */}
         <Link href="/" className="font-serif text-2xl font-semibold tracking-tight">
-          <img src="/logo-aduda.png" alt="ADUDA Natural Service" className="h-12 w-auto" />
+          <img src="/logo.png" alt="ADUDA Natural Service" className="h-22 w-auto" />
         </Link>
 
         {/* Desktop Navigation */}
