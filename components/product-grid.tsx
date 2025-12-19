@@ -31,7 +31,7 @@ const products = [
   },
   {
     id: "5",
-    name: "Stoom bladeren Poem",
+    name: "Stoom Bladeren Poem",
     price: 15,
     image: "/thudarum-burgundy-blazer-combo.jpg",
     category: "Diversen",
