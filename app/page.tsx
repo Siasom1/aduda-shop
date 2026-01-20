@@ -11,12 +11,13 @@ export default function Home() {
       <section className="relative h-[60vh] sm:h-[70vh] flex items-center justify-center bg-black overflow-hidden">
         {/* YouTube video background */}
         <div className="absolute inset-0 w-full h-full">
-          <iframe
-            className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2"
-            src="IMG_0671.MOV?autoplay=1&mute=1&loop=1&playlist=IMG_0671.MOV&controls=0&modestbranding=1&showinfo=0&rel=0"
-            title="Background video"
-            allow="autoplay; encrypted-media"
-            style={{ pointerEvents: "none" }}
+           <video
+            className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2 object-cover"
+            src="/video.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
           />
           {/* Dark overlay for better text readability */}
           <div className="absolute inset-0 bg-black/40" />
@@ -29,9 +30,9 @@ export default function Home() {
           <p className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 max-w-2xl mx-auto text-balance drop-shadow-md text-white/90">
             Brought to you online for your convenience and enjoyment.
           </p>
-          <Button asChild size="lg" className="h-11 sm:h-12 px-6 sm:px-8 text-sm sm:text-base">
+          {/* <Button asChild size="lg" className="h-11 sm:h-12 px-6 sm:px-8 text-sm sm:text-base">
             <Link href="/shop">Explore Products</Link>
-          </Button>
+          </Button> */}
         </div>
       </section>
 
