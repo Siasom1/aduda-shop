@@ -40,7 +40,7 @@ export function ProductCard({ product }: { product: Product }) {
 
     toast({
       title: "Added to cart",
-      description: `${product.name} - Size M (default)`,
+      description: `€{product.name} - Size M (default)`,
       duration: 2000,
     })
 
@@ -52,7 +52,7 @@ export function ProductCard({ product }: { product: Product }) {
 
   return (
     <div className="group relative">
-      <Link href={`/product/${product.id}`}>
+      <Link href={`/product/€{product.id}`}>
         <div className="relative aspect-[3/4] overflow-hidden bg-secondary mb-4">
           <Image
             src={product.image || "/placeholder.svg"}
@@ -83,7 +83,7 @@ export function ProductCard({ product }: { product: Product }) {
         <div className="space-y-1">
           <p className="text-xs text-muted-foreground uppercase tracking-wider">{product.category}</p>
           <h3 className="font-medium text-sm">{product.name}</h3>
-          <p className="text-sm font-medium">${product.price}</p>
+          <p className="text-sm font-medium">€{product.price}</p>
         </div>
       </Link>
     </div>

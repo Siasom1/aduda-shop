@@ -35,7 +35,7 @@ export function OrderHistory() {
     if (saved) {
       const parsedOrders = JSON.parse(saved).map((order: Order) => ({
         ...order,
-        trackingNumber: order.trackingNumber || `TH${Math.random().toString(36).substring(2, 10).toUpperCase()}`,
+        trackingNumber: order.trackingNumber || `TH€{Math.random().toString(36).substring(2, 10).toUpperCase()}`,
         trackingEvents: order.trackingEvents || generateMockTracking(order.status, order.date),
       }))
       setOrders(parsedOrders)
@@ -143,10 +143,10 @@ export function OrderHistory() {
                     )}
                   </div>
                   <div className="flex items-center gap-4">
-                    <span className={`text-sm font-medium capitalize ${getStatusColor(order.status)}`}>
+                    <span className={`text-sm font-medium capitalize €{getStatusColor(order.status)}`}>
                       {order.status}
                     </span>
-                    <span className="font-medium">${order.total.toFixed(2)}</span>
+                    <span className="font-medium">€{order.total.toFixed(2)}</span>
                   </div>
                 </div>
 
@@ -166,7 +166,7 @@ export function OrderHistory() {
                 >
                   {isExpanded ? "Hide" : "Show"} Tracking
                   <ChevronRight
-                    className={`ml-2 h-4 w-4 transition-transform ${isExpanded ? "rotate-90" : "group-hover:translate-x-1"}`}
+                    className={`ml-2 h-4 w-4 transition-transform €{isExpanded ? "rotate-90" : "group-hover:translate-x-1"}`}
                   />
                 </Button>
               </div>
@@ -186,7 +186,7 @@ export function OrderHistory() {
                         <div key={index} className="flex gap-4">
                           <div className="flex flex-col items-center">
                             <div
-                              className={`flex h-8 w-8 items-center justify-center rounded-full ${
+                              className={`flex h-8 w-8 items-center justify-center rounded-full €{
                                 isLast
                                   ? "bg-foreground text-background"
                                   : "bg-muted-foreground/20 text-muted-foreground"

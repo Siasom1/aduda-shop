@@ -73,7 +73,7 @@ export default function CheckoutPage() {
                       <h3 className="text-sm font-medium mb-1 truncate">{item.name}</h3>
                       <p className="text-xs text-muted-foreground">Size: {item.size}</p>
                       <p className="text-xs text-muted-foreground">Qty: {item.quantity}</p>
-                      <p className="text-sm font-medium mt-1">${(item.price * item.quantity).toFixed(2)}</p>
+                      <p className="text-sm font-medium mt-1">€{(item.price * item.quantity).toFixed(2)}</p>
                     </div>
                   </div>
                 ))}
@@ -83,22 +83,22 @@ export default function CheckoutPage() {
               <div className="border-t border-border pt-3 sm:pt-4 space-y-2 sm:space-y-3 mb-4 sm:mb-6">
                 <div className="flex justify-between text-sm">
                   <span className="text-muted-foreground">Subtotal</span>
-                  <span className="font-medium">${total.toFixed(2)}</span>
+                  <span className="font-medium">€{total.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-muted-foreground">Shipping</span>
-                  <span className="font-medium">{shipping === 0 ? "Free" : `$${shipping.toFixed(2)}`}</span>
+                  <span className="font-medium">{shipping === 0 ? "Free" : `€€{shipping.toFixed(2)}`}</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-muted-foreground">Tax</span>
-                  <span className="font-medium">${tax.toFixed(2)}</span>
+                  <span className="font-medium">€{tax.toFixed(2)}</span>
                 </div>
               </div>
 
               <div className="border-t border-border pt-3 sm:pt-4">
                 <div className="flex justify-between font-serif text-lg sm:text-xl font-semibold">
                   <span>Total</span>
-                  <span>${orderTotal.toFixed(2)}</span>
+                  <span>€{orderTotal.toFixed(2)}</span>
                 </div>
               </div>
             </div>

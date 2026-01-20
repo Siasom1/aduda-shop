@@ -25,11 +25,11 @@ export function Header() {
             Shop
           </Link>
           <Link href="/collections" className="text-sm font-medium hover:text-muted-foreground transition-colors">
-            Collections
+            Collection
           </Link>
-          <Link href="/about" className="text-sm font-medium hover:text-muted-foreground transition-colors">
+          {/* <Link href="/about" className="text-sm font-medium hover:text-muted-foreground transition-colors">
             About
-          </Link>
+          </Link> */}
         </nav>
 
         {/* Actions */}

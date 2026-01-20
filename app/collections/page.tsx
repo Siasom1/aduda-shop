@@ -11,7 +11,7 @@ export default function CollectionsPage() {
       name: "Verschillende Olieen",
       description:
         "Verschillende ollieen voor verschillende werkingen.",
-      image: "/thudarum-burgundy-evening-suit.jpg",
+      image: "/IMG_0674.JPEG",
       items: "10 items",
     },
     {
@@ -62,7 +62,7 @@ export default function CollectionsPage() {
         {/* Collections Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
           {collections.map((collection) => (
-            <Link key={collection.id} href={`/shop?collection=${collection.id}`} className="group">
+            <Link key={collection.id} href={`/shop?collection=€{collection.id}`} className="group">
               <div className="relative aspect-[4/5] overflow-hidden bg-secondary mb-4">
                 <Image
                   src={collection.image || "/placeholder.svg"}

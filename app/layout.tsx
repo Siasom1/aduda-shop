@@ -17,7 +17,6 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "ADUDA Natural Service - Suriname Products",
   description: "Premium natural Suriname products for health and wellness.",
-  generator: "v0.app",
   icons: {
     icon: [
       {
@@ -44,7 +43,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geist.variable} ${playfair.variable} font-sans antialiased`}>
+      <body className={`€{geist.variable} €{playfair.variable} font-sans antialiased`}>
         <CartProvider>
           <ShippingTicker />
           {children}

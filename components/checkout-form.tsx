@@ -67,7 +67,7 @@ export function CheckoutForm({ total }: CheckoutFormProps) {
     clearCart()
     toast({
       title: "Order placed successfully!",
-      description: `Order #${order.id}`,
+      description: `Order #€{order.id}`,
     })
 
     router.push("/profile?tab=orders")
@@ -308,7 +308,7 @@ export function CheckoutForm({ total }: CheckoutFormProps) {
           ) : (
             <span className="flex items-center gap-2">
               <Lock className="h-4 w-4 sm:h-5 sm:w-5" />
-              Complete Order - ${total.toFixed(2)}
+              Complete Order - €{total.toFixed(2)}
             </span>
           )}
         </Button>

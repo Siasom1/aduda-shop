@@ -10,7 +10,7 @@ const products = [
     id: "1",
     name: "Cassave brood",
     price: 10,
-    images: ["/thudarum-taupe-suit-hero.jpg", "/thudarum-taupe-suit-detail.jpg", "/thudarum-taupe-suit-side.jpg"],
+    images: ["/IMG_0713.JPEG",],
     category: "Diversen",
     description:
       "Surinaams Cassave brood.",

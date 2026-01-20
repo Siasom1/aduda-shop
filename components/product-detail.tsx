@@ -56,7 +56,7 @@ export function ProductDetail({ product }: { product: Product }) {
 
     toast({
       title: "Added to cart!",
-      description: `${product.name} - Size ${selectedSize}`,
+      description: `€{product.name} - Size €{selectedSize}`,
       duration: 2000,
     })
 
@@ -92,13 +92,13 @@ export function ProductDetail({ product }: { product: Product }) {
               <button
                 key={index}
                 onClick={() => setSelectedImage(index)}
-                className={`relative aspect-[3/4] bg-secondary overflow-hidden border-2 transition-colors ${
+                className={`relative aspect-[3/4] bg-secondary overflow-hidden border-2 transition-colors €{
                   selectedImage === index ? "border-foreground" : "border-transparent"
                 }`}
               >
                 <Image
                   src={image || "/placeholder.svg"}
-                  alt={`${product.name} ${index + 1}`}
+                  alt={`€{product.name} €{index + 1}`}
                   fill
                   className="object-cover"
                 />
@@ -114,7 +114,7 @@ export function ProductDetail({ product }: { product: Product }) {
             <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-semibold mb-3 sm:mb-4 text-balance">
               {product.name}
             </h1>
-            <p className="text-xl sm:text-2xl font-medium">${product.price}</p>
+            <p className="text-xl sm:text-2xl font-medium">€{product.price}</p>
           </div>
 
           <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-6 sm:mb-8">
@@ -122,7 +122,7 @@ export function ProductDetail({ product }: { product: Product }) {
           </p>
 
           {/* Size Selection */}
-          <div className={`mb-6 sm:mb-8 transition-all duration-300 ${showSizeError ? "animate-shake" : ""}`}>
+          <div className={`mb-6 sm:mb-8 transition-all duration-300 €{showSizeError ? "animate-shake" : ""}`}>
             <div className="flex items-center justify-between mb-3 sm:mb-4">
               <h3 className="font-medium text-sm sm:text-base">Select Size</h3>
               {showSizeError && (
@@ -133,7 +133,7 @@ export function ProductDetail({ product }: { product: Product }) {
               )}
             </div>
             <div
-              className={`flex flex-wrap gap-2 p-3 border-2 rounded transition-colors ${
+              className={`flex flex-wrap gap-2 p-3 border-2 rounded transition-colors €{
                 showSizeError ? "border-destructive bg-destructive/5" : "border-transparent"
               }`}
             >
@@ -144,7 +144,7 @@ export function ProductDetail({ product }: { product: Product }) {
                     setSelectedSize(size)
                     setShowSizeError(false)
                   }}
-                  className={`px-4 sm:px-6 py-2 sm:py-3 border transition-all duration-200 text-sm sm:text-base ${
+                  className={`px-4 sm:px-6 py-2 sm:py-3 border transition-all duration-200 text-sm sm:text-base €{
                     selectedSize === size
                       ? "bg-foreground text-background border-foreground scale-105"
                       : "bg-background text-foreground border-border hover:border-foreground hover:scale-105"
@@ -193,7 +193,7 @@ export function ProductDetail({ product }: { product: Product }) {
           <div className="border-t border-border mt-6 sm:mt-8 pt-6 sm:pt-8 space-y-3 sm:space-y-4 text-xs sm:text-sm">
             <div>
               <h4 className="font-medium mb-2">Free Shipping</h4>
-              <p className="text-muted-foreground">Complimentary shipping on all orders over $200</p>
+              <p className="text-muted-foreground">Complimentary shipping on all orders over €100</p>
             </div>
             <div>
               <h4 className="font-medium mb-2">Returns & Exchanges</h4>
