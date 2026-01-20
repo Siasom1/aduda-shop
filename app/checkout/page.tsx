@@ -87,7 +87,7 @@ export default function CheckoutPage() {
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-muted-foreground">Shipping</span>
-                  <span className="font-medium">{shipping === 0 ? "Free" : `€€{shipping.toFixed(2)}`}</span>
+                  <span className="font-medium">{shipping === 0 ? "Free" : `€${shipping.toFixed(2)}`}</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-muted-foreground">Tax</span>
