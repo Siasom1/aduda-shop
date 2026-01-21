@@ -94,7 +94,7 @@ export default function CartPage() {
           {/* Cart Items */}
           <div className="lg:col-span-2 space-y-4 sm:space-y-6">
             {items.map((item) => (
-              <div key={`€{item.id}-€{item.size}`} className="flex gap-3 sm:gap-4 pb-4 sm:pb-6 border-b border-border">
+              <div key={`${item.id}-€{item.size}`} className="flex gap-3 sm:gap-4 pb-4 sm:pb-6 border-b border-border">
                 {/* Product Image */}
                 <div className="relative w-20 h-24 sm:w-24 sm:h-32 bg-secondary flex-shrink-0 overflow-hidden">
                   <Image src={item.image || "/placeholder.svg"} alt={item.name} fill className="object-cover" />

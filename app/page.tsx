@@ -63,12 +63,12 @@ export default function Home() {
                 <li>
                   <Link href="/shop">All Products</Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link href="/collections">Collections</Link>
-                </li>
-                <li>
+                </li> */}
+                {/* <li>
                   <Link href="/new">New Arrivals</Link>
-                </li>
+                </li> */}
               </ul>
             </div>
             <div>
@@ -77,12 +77,12 @@ export default function Home() {
                 <li>
                   <Link href="/contact">Contact</Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link href="/shipping">Shipping</Link>
                 </li>
                 <li>
                   <Link href="/returns">Returns</Link>
-                </li>
+                </li> */}
               </ul>
             </div>
             <div>

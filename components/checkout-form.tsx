@@ -1,6 +1,7 @@
 "use client"
 
 import type React from "react"
+import { CreditCard } from "lucide-react"
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
@@ -9,17 +10,40 @@ import { Input } from "./ui/input"
 import { Label } from "./ui/label"
 import { useCart } from "./cart-provider"
 import { useToast } from "@/hooks/use-toast"
-import { CreditCard, Lock } from "lucide-react"
+import { Lock, Building2, CheckCircle2 } from "lucide-react"
 
 interface CheckoutFormProps {
   total: number
 }
+
+type PaymentMethod = "ideal" | "bancontact" | "sofort" | "giropay"
+
+const paymentMethods = [
+  { id: "ideal" as const, name: "iDEAL", description: "Pay with your Dutch bank", country: "Netherlands" },
+  { id: "bancontact" as const, name: "Bancontact", description: "Pay with Bancontact", country: "Belgium" },
+  { id: "sofort" as const, name: "SOFORT", description: "Direct bank transfer", country: "Germany, Austria" },
+  { id: "giropay" as const, name: "Giropay", description: "German online banking", country: "Germany" },
+]
+
+const idealBanks = [
+  { id: "abn_amro", name: "ABN AMRO" },
+  { id: "asn_bank", name: "ASN Bank" },
+  { id: "bunq", name: "bunq" },
+  { id: "ing", name: "ING" },
+  { id: "knab", name: "Knab" },
+  { id: "rabobank", name: "Rabobank" },
+  { id: "sns_bank", name: "SNS Bank" },
+  { id: "triodos_bank", name: "Triodos Bank" },
+  { id: "revolut", name: "Revolut" },
+]
 
 export function CheckoutForm({ total }: CheckoutFormProps) {
   const router = useRouter()
   const { clearCart } = useCart()
   const { toast } = useToast()
   const [isProcessing, setIsProcessing] = useState(false)
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<PaymentMethod>("ideal")
+  const [selectedBank, setSelectedBank] = useState("")
 
   const [formData, setFormData] = useState({
     // Contact
@@ -67,7 +91,7 @@ export function CheckoutForm({ total }: CheckoutFormProps) {
     clearCart()
     toast({
       title: "Order placed successfully!",
-      description: `Order #€{order.id}`,
+      description: `Order #${order.id}`,
     })
 
     router.push("/profile?tab=orders")
@@ -226,94 +250,93 @@ export function CheckoutForm({ total }: CheckoutFormProps) {
         </div>
       </div>
 
-      {/* Payment Information */}
+      {/* Payment Method Selection */}
       <div>
-        <h2 className="font-serif text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">Payment Information</h2>
-        <div className="space-y-3 sm:space-y-4">
-          <div>
-            <Label htmlFor="cardNumber" className="text-sm">
-              Card Number
-            </Label>
-            <div className="relative mt-1.5">
-              <Input
-                id="cardNumber"
-                name="cardNumber"
-                required
-                value={formData.cardNumber}
-                onChange={handleChange}
-                placeholder="1234 5678 9012 3456"
-                maxLength={19}
-              />
-              <CreditCard className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-            </div>
-          </div>
+        <h2 className="font-serif text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">Payment Method</h2>
+        <p className="text-sm text-muted-foreground mb-4">Select your preferred bank payment method</p>
+        
+        <div className="space-y-3">
+          {paymentMethods.map((method) => (
+            <button
+              key={method.id}
+              type="button"
+              onClick={() => {
+                setSelectedPaymentMethod(method.id)
+                setSelectedBank("")
+              }}
+              className={`w-full p-4 border text-left transition-all ${
+                selectedPaymentMethod === method.id
+                  ? "border-foreground bg-secondary"
+                  : "border-border hover:border-foreground/50"
+              }`}
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <Building2 className="h-5 w-5 text-foreground" />
+                  <div>
+                    <p className="font-medium">{method.name}</p>
+                    <p className="text-xs text-muted-foreground">{method.description} - {method.country}</p>
+                  </div>
+                </div>
+                {selectedPaymentMethod === method.id && (
+                  <CheckCircle2 className="h-5 w-5 text-foreground" />
+                )}
+              </div>
+            </button>
+          ))}
+        </div>
 
-          <div>
-            <Label htmlFor="cardName" className="text-sm">
-              Name on Card
-            </Label>
-            <Input
-              id="cardName"
-              name="cardName"
+        {/* Bank Selection for iDEAL */}
+        {selectedPaymentMethod === "ideal" && (
+          <div className="mt-4">
+            <Label htmlFor="bank" className="text-sm">Select your bank</Label>
+            <select
+              id="bank"
+              value={selectedBank}
+              onChange={(e) => setSelectedBank(e.target.value)}
               required
-              value={formData.cardName}
-              onChange={handleChange}
-              className="mt-1.5"
-            />
+              className="mt-1.5 w-full h-10 px-3 border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+            >
+              <option value="">Choose your bank...</option>
+              {idealBanks.map((bank) => (
+                <option key={bank.id} value={bank.id}>
+                  {bank.name}
+                </option>
+              ))}
+            </select>
           </div>
+        )}
 
-          <div className="grid grid-cols-2 gap-3 sm:gap-4">
-            <div>
-              <Label htmlFor="expiryDate" className="text-sm">
-                Expiry Date
-              </Label>
-              <Input
-                id="expiryDate"
-                name="expiryDate"
-                required
-                value={formData.expiryDate}
-                onChange={handleChange}
-                placeholder="MM/YY"
-                maxLength={5}
-                className="mt-1.5"
-              />
-            </div>
-            <div>
-              <Label htmlFor="cvv" className="text-sm">
-                CVV
-              </Label>
-              <Input
-                id="cvv"
-                name="cvv"
-                required
-                value={formData.cvv}
-                onChange={handleChange}
-                placeholder="123"
-                maxLength={4}
-                className="mt-1.5"
-              />
-            </div>
-          </div>
+        <div className="mt-4 p-4 bg-secondary/50 border border-border">
+          <p className="text-sm text-muted-foreground">
+            <Lock className="h-4 w-4 inline mr-2" />
+            You will be redirected to your bank to complete the payment securely via {paymentMethods.find(m => m.id === selectedPaymentMethod)?.name}.
+          </p>
         </div>
       </div>
 
       {/* Submit Button */}
       <div className="border-t border-border pt-4 sm:pt-6">
-        <Button type="submit" size="lg" className="w-full h-12 sm:h-14 text-sm sm:text-base" disabled={isProcessing}>
+        <Button 
+          type="submit" 
+          size="lg" 
+          className="w-full h-12 sm:h-14 text-sm sm:text-base" 
+          disabled={isProcessing || (selectedPaymentMethod === "ideal" && !selectedBank)}
+        >
           {isProcessing ? (
             <span className="flex items-center gap-2">
               <span className="animate-spin">⏳</span>
-              Processing...
+              Redirecting to bank...
             </span>
           ) : (
             <span className="flex items-center gap-2">
-              <Lock className="h-4 w-4 sm:h-5 sm:w-5" />
-              Complete Order - €{total.toFixed(2)}
+              <Building2 className="h-4 w-4 sm:h-5 sm:w-5" />
+              Pay with {paymentMethods.find(m => m.id === selectedPaymentMethod)?.name} - ${total.toFixed(2)}
             </span>
           )}
         </Button>
         <p className="text-xs text-center text-muted-foreground mt-3">
-          Your payment information is secure and encrypted
+          Secure bank payment powered by Mollie
         </p>
       </div>
     </form>
