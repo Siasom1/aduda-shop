@@ -4,6 +4,7 @@ import { Geist, Playfair_Display } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import { CartProvider } from "@/components/cart-provider"
+import { LanguageProvider } from "@/components/language-provider"
 import { Toaster } from "@/components/ui/toaster"
 import { ShippingTicker } from "@/components/shipping-ticker"
 
@@ -15,8 +16,9 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
-  title: "ADUDA Natural Service - Suriname Products",
-  description: "Premium natural Suriname products for health and wellness.",
+  title: "ADUDA Natural Service - Luxury Fashion",
+  description: "Premium natural service and contemporary fashion for the discerning individual",
+  generator: "v0.app",
   icons: {
     icon: [
       {
@@ -43,12 +45,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`€{geist.variable} €{playfair.variable} font-sans antialiased`}>
-        <CartProvider>
-          <ShippingTicker />
-          {children}
-          <Toaster />
-        </CartProvider>
+      <body className={`${geist.variable} ${playfair.variable} font-sans antialiased`}>
+        <LanguageProvider>
+          <CartProvider>
+            <ShippingTicker />
+            {children}
+            <Toaster />
+          </CartProvider>
+        </LanguageProvider>
         <Analytics />
       </body>
     </html>
