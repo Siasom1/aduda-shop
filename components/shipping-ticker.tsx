@@ -3,7 +3,7 @@
 import { Truck } from "lucide-react"
 
 export function ShippingTicker() {
-  const messages = ["FREE SHIPPING ON ORDERS OVER €100", "30-DAY RETURNS", "AUTHENTIC SURINAME PRODUCTS"]
+  const messages = ["FREE SHIPPING ON ORDERS OVER €50", "30-DAY RETURNS", "AUTHENTIC SURINAME PRODUCTS"]
 
   return (
     <div className="sticky top-0 z-50 bg-foreground text-background py-1.5 overflow-hidden">
