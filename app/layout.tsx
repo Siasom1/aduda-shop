@@ -16,9 +16,9 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
-  title: "ADUDA Natural Service - Luxury Fashion",
-  description: "Premium natural service and contemporary fashion for the discerning individual",
-  generator: "v0.app",
+  title: "ADUDA Natural Service - Suriname Products",
+  description: "Premium natural service and contemporary products for the discerning individual",
+  // generator: "v0.app",
   icons: {
     icon: [
       {

@@ -7,6 +7,7 @@ import Image from "next/image"
 import { ShoppingBag } from "lucide-react"
 import { Button } from "./ui/button"
 import { useCart } from "./cart-provider"
+import { useLanguage } from "./language-provider"
 import { useToast } from "@/hooks/use-toast"
 import { useState } from "react"
 
@@ -20,6 +21,7 @@ interface Product {
 
 export function ProductCard({ product }: { product: Product }) {
   const { addItem } = useCart()
+  const { t } = useLanguage()
   const { toast } = useToast()
   const [isAdding, setIsAdding] = useState(false)
   const [showCartAnimation, setShowCartAnimation] = useState(false)
@@ -39,8 +41,8 @@ export function ProductCard({ product }: { product: Product }) {
     })
 
     toast({
-      title: "Added to cart",
-      description: `€{product.name} - Size M (default)`,
+      title: t("addedToCart"),
+      description: product.name,
       duration: 2000,
     })
 
@@ -52,7 +54,7 @@ export function ProductCard({ product }: { product: Product }) {
 
   return (
     <div className="group relative">
-      <Link href={`/product/€{product.id}`}>
+      <Link href={`/product/${product.id}`}>
         <div className="relative aspect-[3/4] overflow-hidden bg-secondary mb-4">
           <Image
             src={product.image || "/placeholder.svg"}
@@ -77,13 +79,13 @@ export function ProductCard({ product }: { product: Product }) {
             size="sm"
           >
             <ShoppingBag className="h-4 w-4 mr-2" />
-            {isAdding ? "Added!" : "Quick Add"}
+            {isAdding ? t("addedToCart") : t("addToCart")}
           </Button>
         </div>
         <div className="space-y-1">
           <p className="text-xs text-muted-foreground uppercase tracking-wider">{product.category}</p>
           <h3 className="font-medium text-sm">{product.name}</h3>
-          <p className="text-sm font-medium">€{product.price}</p>
+          <p className="text-sm font-medium">€{product.price.toFixed(2)}</p>
         </div>
       </Link>
     </div>

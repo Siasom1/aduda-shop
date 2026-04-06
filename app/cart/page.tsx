@@ -22,7 +22,7 @@ export default function CartPage() {
   const coupons = {
     WELCOME10: 10,
     SAVE20: 20,
-    LUXURY15: 15,
+    ADUDA15: 15,
   }
 
   const handleApplyCoupon = () => {
@@ -33,7 +33,7 @@ export default function CartPage() {
         setAppliedCoupon({ code: couponCode.toUpperCase(), discount })
         toast({
           title: "Coupon applied!",
-          description: `You saved €{discount}% on your order`,
+          description: `You saved ${discount}% on your order`,
         })
       } else {
         toast({
@@ -53,6 +53,7 @@ export default function CartPage() {
 
   const discountAmount = appliedCoupon ? (total * appliedCoupon.discount) / 100 : 0
   const subtotalAfterDiscount = total - discountAmount
+  const shippingCost = subtotalAfterDiscount >= 50 ? 0 : 6.95
 
   if (items.length === 0) {
     return (
@@ -94,13 +95,11 @@ export default function CartPage() {
           {/* Cart Items */}
           <div className="lg:col-span-2 space-y-4 sm:space-y-6">
             {items.map((item) => (
-              <div key={`${item.id}-€{item.size}`} className="flex gap-3 sm:gap-4 pb-4 sm:pb-6 border-b border-border">
-                {/* Product Image */}
+              <div key={`${item.id}-${item.size}`} className="flex gap-3 sm:gap-4 pb-4 sm:pb-6 border-b border-border">
                 <div className="relative w-20 h-24 sm:w-24 sm:h-32 bg-secondary flex-shrink-0 overflow-hidden">
                   <Image src={item.image || "/placeholder.svg"} alt={item.name} fill className="object-cover" />
                 </div>
 
-                {/* Product Details */}
                 <div className="flex-1 min-w-0">
                   <div className="flex justify-between gap-2 sm:gap-4 mb-2">
                     <div className="flex-1 min-w-0">
@@ -117,7 +116,6 @@ export default function CartPage() {
                   </div>
 
                   <div className="flex items-center justify-between mt-3 sm:mt-4">
-                    {/* Quantity Controls */}
                     <div className="flex items-center gap-2 sm:gap-3 border border-border">
                       <button
                         onClick={() => updateQuantity(item.id, item.size, item.quantity - 1)}
@@ -136,7 +134,6 @@ export default function CartPage() {
                       </button>
                     </div>
 
-                    {/* Price */}
                     <p className="font-medium text-sm sm:text-base">€{(item.price * item.quantity).toFixed(2)}</p>
                   </div>
                 </div>
@@ -187,7 +184,7 @@ export default function CartPage() {
                     </Button>
                   </div>
                 )}
-                <p className="text-xs text-muted-foreground mt-2">Try: WELCOME10, SAVE20, LUXURY15</p>
+                <p className="text-xs text-muted-foreground mt-2">Try: WELCOME10, SAVE20, ADUDA15</p>
               </div>
 
               <div className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
@@ -203,31 +200,25 @@ export default function CartPage() {
                 )}
                 <div className="flex justify-between text-sm">
                   <span className="text-muted-foreground">Shipping</span>
-                  <span className="font-medium">{subtotalAfterDiscount >= 200 ? "Free" : "€15.00"}</span>
+                  <span className="font-medium">
+                    {shippingCost === 0 ? "Free" : `€${shippingCost.toFixed(2)}`}
+                  </span>
                 </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-muted-foreground">Tax</span>
-                  <span className="font-medium">€{(subtotalAfterDiscount * 0.08).toFixed(2)}</span>
+                <div className="flex justify-between text-xs text-muted-foreground">
+                  <span>Ships to: Netherlands, France, Germany</span>
                 </div>
               </div>
 
               <div className="border-t border-border pt-3 sm:pt-4 mb-4 sm:mb-6">
                 <div className="flex justify-between font-serif text-base sm:text-lg font-semibold">
                   <span>Total</span>
-                  <span>
-                    €
-                    {(
-                      subtotalAfterDiscount +
-                      (subtotalAfterDiscount >= 200 ? 0 : 15) +
-                      subtotalAfterDiscount * 0.08
-                    ).toFixed(2)}
-                  </span>
+                  <span>€{(subtotalAfterDiscount + shippingCost).toFixed(2)}</span>
                 </div>
               </div>
 
-              {subtotalAfterDiscount < 200 && (
+              {subtotalAfterDiscount < 50 && (
                 <p className="text-xs text-muted-foreground mb-4 sm:mb-6">
-                  Add €{(200 - subtotalAfterDiscount).toFixed(2)} more for free shipping
+                  Add €{(50 - subtotalAfterDiscount).toFixed(2)} more for free shipping
                 </p>
               )}
 

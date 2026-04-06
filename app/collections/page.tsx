@@ -7,34 +7,34 @@ import { ArrowLeft } from "lucide-react"
 export default function CollectionsPage() {
   const collections = [
     {
-      id: "Olieen",
-      name: "Verschillende Olieen",
+      id: "oils",
+      name: "Natural Oils",
       description:
-        "Verschillende ollieen voor verschillende werkingen.",
-      image: "/IMG_0674.JPEG",
-      items: "10 items",
+        "Pure, unrefined oils sourced directly from Suriname and West Africa. Cocos Olie, Batana Oil, Calophylle and Moringa oils for cooking, skin and hair care.",
+      image: "/images/aduda-cocos-olie.jpg",
+      items: "6 products",
     },
     {
-      id: "Tabak",
-      name: "Tabak Collectie",
-      description: "Meerdere tabak soorten.",
-      image: "/thudarum-green-check-blazer.jpg",
-      items: "2 items",
+      id: "foods",
+      name: "Traditional Foods",
+      description: "Authentic cassava bread, grain packages, and traditional food staples. Handmade using time-honored recipes from Suriname and the Caribbean.",
+      image: "/images/aduda-cassava-bread.jpg",
+      items: "8 products",
     },
     {
-      id: "Diversen",
-      name: "Diversen",
-      description: "Diverse producten.",
-      image: "/thudarum-sky-blue-blazer.jpg",
-      items: "9 items",
+      id: "spices",
+      name: "Spices & Seasonings",
+      description: "Hand-ground spice blends and seasonings from West Africa. Authentic flavors for traditional and modern cooking.",
+      image: "/images/aduda-spices.jpg",
+      items: "5 products",
     },
-    // {
-    //   id: "evening",
-    //   name: "Evening Collection",
-    //   description: "Luxurious velvet and satin pieces designed to make a statement at formal occasions.",
-    //   image: "/thudarum-navy-velvet-blazer.jpg",
-    //   items: "6 items",
-    // },
+    {
+      id: "wellness",
+      name: "Wellness & Body Care",
+      description: "Natural body care products including pure shea butter, Podosiri Acai drinks, and herbal remedies for health and wellbeing.",
+      image: "/images/aduda-podosiri-acai.jpg",
+      items: "7 products",
+    },
   ]
 
   return (
@@ -55,14 +55,14 @@ export default function CollectionsPage() {
             Collections
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground text-balance">
-            Explore our curated collections, each telling a unique story of style, craftsmanship, and modern elegance.
+            Explore our curated collections of natural products, traditional foods, and wellness items sourced directly from Suriname and West Africa.
           </p>
         </div>
 
         {/* Collections Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
           {collections.map((collection) => (
-            <Link key={collection.id} href={`/shop?collection=€{collection.id}`} className="group">
+            <Link key={collection.id} href={`/shop?collection=${collection.id}`} className="group">
               <div className="relative aspect-[4/5] overflow-hidden bg-secondary mb-4">
                 <Image
                   src={collection.image || "/placeholder.svg"}
@@ -94,11 +94,11 @@ export default function CollectionsPage() {
       <section className="bg-secondary py-12 sm:py-16 md:py-24">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-semibold mb-6">Crafted for Excellence</h2>
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-semibold mb-6">Rooted in Nature</h2>
             <p className="text-muted-foreground mb-8 text-base sm:text-lg leading-relaxed">
-              Each collection is carefully curated to offer a distinct aesthetic while maintaining the exceptional
-              quality and attention to detail that defines ADUDA Natural Service. From boardroom to ballroom, we have
-              the perfect piece for every occasion.
+              Each collection is carefully sourced to bring you the most authentic natural products from Suriname and
+              West Africa. From traditional foods to natural oils and wellness products, we bring the best of nature
+              directly to your home.
             </p>
             <Button asChild size="lg" variant="outline" className="h-12 px-8 bg-transparent">
               <Link href="/shop">Browse All Products</Link>
