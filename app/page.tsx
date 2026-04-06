@@ -62,7 +62,7 @@ export default function Home() {
         <div className="absolute inset-0 w-full h-full">
           <video
             className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2 object-cover"
-            src="/IMG_0671.MOV"
+            src="/video.mp4"
             autoPlay
             muted
             loop
