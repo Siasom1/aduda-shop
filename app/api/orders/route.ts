@@ -1,6 +1,6 @@
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+// const resend = new Resend(process.env.RESEND_API_KEY)
 
 export async function POST(request: Request) {
   try {
@@ -52,14 +52,14 @@ ADUDA NATURAL SERVICE
     `.trim()
 
     // Send email notification
-    if (process.env.RESEND_API_KEY) {
-      await resend.emails.send({
-        from: 'ADUDA Orders <onboarding@resend.dev>',
-        to: 'ajskrook@gmail.com',
-        subject: `New Order #${orderId} - ADUDA NATURAL SERVICE`,
-        text: emailContent,
-      })
-    }
+    // if (process.env.RESEND_API_KEY) {
+    //   await resend.emails.send({
+    //     from: 'ADUDA Orders <onboarding@resend.dev>',
+    //     to: 'ajskrook@gmail.com',
+    //     subject: `New Order #${orderId} - ADUDA NATURAL SERVICE`,
+    //     text: emailContent,
+    //   })
+    // }
 
     return Response.json({
       success: true,

@@ -1,6 +1,6 @@
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+// const resend = new Resend(process.env.RESEND_API_KEY)
 
 export async function POST(request: Request) {
   try {
@@ -22,15 +22,15 @@ ${message}
 Sent from ADUDA NATURAL SERVICE contact form
     `.trim()
 
-    if (process.env.RESEND_API_KEY) {
-      await resend.emails.send({
-        from: 'ADUDA Contact <onboarding@resend.dev>',
-        to: 'ajskrook@gmail.com',
-        replyTo: email,
-        subject: `Contact: ${subject} - ADUDA NATURAL SERVICE`,
-        text: emailContent,
-      })
-    }
+    // if (process.env.RESEND_API_KEY) {
+    //   await resend.emails.send({
+    //     from: 'ADUDA Contact <onboarding@resend.dev>',
+    //     to: 'ajskrook@gmail.com',
+    //     replyTo: email,
+    //     subject: `Contact: ${subject} - ADUDA NATURAL SERVICE`,
+    //     text: emailContent,
+    //   })
+    // }
 
     return Response.json({
       success: true,
